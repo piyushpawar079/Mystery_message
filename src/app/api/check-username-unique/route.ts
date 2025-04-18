@@ -14,13 +14,11 @@ export async function GET(request: Request){
     try {
         
         const { searchParams } = new URL(request.url)
-        console.log(searchParams)
         const queryParam = {
             username: searchParams.get('username')
         }
 
         const result =  UsernameQuerySchema.safeParse(queryParam)
-        console.log("This is the result: ", result)
 
         if (!result.success) {
             const usernameError = result.error.format().username?._errors || []
@@ -28,7 +26,7 @@ export async function GET(request: Request){
                 success: false,
                 message: usernameError?.length > 0 ? usernameError.join(', ') : 'Invalid username'
             }, {
-                status: 400
+                status: 300
             })
         }
 
