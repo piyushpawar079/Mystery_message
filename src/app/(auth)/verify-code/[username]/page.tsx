@@ -35,7 +35,7 @@ const VerifyCode = () => {
             router.replace('/sign-in')
 
         } catch (error) {
-            console.log("THis is the error ", error)
+            console.log("This is the error ", error)
             const axiosError = error as AxiosError<ApiError>
             const errorMessage = axiosError.response?.data.message 
             toast(errorMessage)
@@ -69,7 +69,7 @@ const VerifyCode = () => {
                         </FormItem>
                     )}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" className='cursor-pointer'>Submit</Button>
                 </form>
             </Form>
         </div>

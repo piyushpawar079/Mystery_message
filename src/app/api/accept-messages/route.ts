@@ -11,7 +11,6 @@ export async function GET(request:Request) {
 
         const userSession = await getServerSession(authOptions)
 
-        console.log(userSession)
 
         if (!userSession || !userSession.user) {
             return Response.json({
@@ -25,9 +24,7 @@ export async function GET(request:Request) {
 
         const userId = userSession.user._id
 
-        const user = await UserModel.findById({
-            userId
-        })
+        const user = await UserModel.findById(userId)
 
         if (!user) {
             return Response.json({
@@ -39,10 +36,11 @@ export async function GET(request:Request) {
             })
         }
 
+
         return Response.json({
             success: true,
             message: "User message acceptance prefference.",
-            isAcceptingMessages: user.isAcceptingMessage
+            isAcceptingMessages: user.isAcceptingMessages
         },
         {
             status: 201
@@ -87,7 +85,7 @@ export async function POST(request: Request){
 
         const dbUser = await UserModel.findByIdAndUpdate(
             userId,
-            {isAcceptingMessage: acceptMessages},
+            {isAcceptingMessages: acceptMessages},
             {new: true}
         )
 

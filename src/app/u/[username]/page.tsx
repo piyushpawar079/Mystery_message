@@ -34,7 +34,6 @@ const SendingMessage = () => {
             username: params.username,
             content: message
         })
-        console.log(response)
         setIsSuccess(response.data.success)
         setMessageStatus(response.data.message)
         toast(response.data.message)

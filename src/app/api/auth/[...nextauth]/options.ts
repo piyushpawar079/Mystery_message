@@ -22,7 +22,6 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials) {
                     return null
                 }
-                console.log(credentials, 'from auth')
                 await dbConnect()
 
                 try {
@@ -34,19 +33,26 @@ export const authOptions: NextAuthOptions = {
                         throw new Error('No user found with this email.')
                     }
 
-                    console.log(existingUser)
 
                     if (!existingUser.isVerified) {
                         throw new Error("User is not verified")
                     }
 
-                    const isPasswordCorrect = await bcrypt.compare(existingUser.password, credentials.password)
+                    const isPasswordCorrect = await bcrypt.compare(credentials.password, existingUser.password)
 
                     if (!isPasswordCorrect) {
                         throw new Error("Invalid Password, please try again")
                     }
 
-                    return existingUser
+                    // return existingUser
+                    return {
+                        _id: existingUser._id?.toString(),
+                        email: existingUser.email,
+                        username: existingUser.username,
+                        isVerified: existingUser.isVerified,
+                        isAcceptingMessages: existingUser.isAcceptingMessages
+                      }
+                      
 
                 } catch (error: any) {
                     throw new Error(error)
@@ -59,7 +65,7 @@ export const authOptions: NextAuthOptions = {
 
             if (user) {
                 token._id = user._id?.toString()
-                token.isAcceptingMessage = user.isAcceptingMessages
+                token.isAcceptingMessages = user.isAcceptingMessages
                 token.isVerified = user.isVerified
                 token.username = user.username
                 token.email = user.email
@@ -71,7 +77,7 @@ export const authOptions: NextAuthOptions = {
             
             if (session?.user) {
                 session.user._id = token._id
-                session.user.isAcceptingMessages = !!token.isAcceptingMessage
+                session.user.isAcceptingMessages = token.isAcceptingMessages
                 session.user.isVerified = token.isVerified
                 session.user.username = token.username
                 session.user.email = token.email
@@ -81,7 +87,7 @@ export const authOptions: NextAuthOptions = {
         }
     },
     pages: {
-        // signIn: '/sign-in',
+        // signIn: '/dashboard',
     },
     secret: process.env.NEXTAUTH_SECRET
 }

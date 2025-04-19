@@ -40,8 +40,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get<ApiResponse>('/api/accept-messages')
-      console.log(response)
-      setValue('acceptMessages', response.data.isAcceptingMessages || false)
+      setValue('acceptMessages', response.data.isAcceptingMessages!!)
     } catch (error) {
       toast('Failed to load message settings')
     } finally{
@@ -55,6 +54,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get('/api/get-messages')
+      setMessages(response.data.messages)
       if(refresh){
         toast("Showing latest messages")
       }
@@ -88,7 +88,6 @@ const Dashboard = () => {
   }
 
   let profileURL = ''
-
   if (session && session.user) {
     const { username } = session?.user!!
     const baseURL = `${window.location.protocol}//${window.location.host}`

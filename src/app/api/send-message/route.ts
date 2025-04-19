@@ -20,7 +20,7 @@ export async function POST(request: Request){
                 status: 404
             })
         }
-        else if (!user.isAcceptingMessage){
+        else if (!user.isAcceptingMessages){
             return Response.json({
                 success: false,
                 message: "User is not accepting messages currently"
@@ -45,7 +45,6 @@ export async function POST(request: Request){
         })
 
     } catch (error) {
-        console.log("Error while sending message: ", error)
         return Response.json({
             success: false,
             message: "Error while sending message"

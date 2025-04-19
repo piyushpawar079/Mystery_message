@@ -30,24 +30,27 @@ export default function Component() {
     const onSubmit = async (data: z.infer<typeof signInSchema>) => {
         setIsSubmitting(true)
         try {
-            const result = await signIn('credentials', {
-                identifier: data.identifier,
-                password: data.password
-            })
-            console.log("This is the sign in result: ", result)
-            if(result?.error){
-                toast("There is some issue while loggin in.")
-            }
-            if(result?.url){
-                router.replace('/dashboard')
-            }
+          const result = await signIn('credentials', {
+            redirect: false,
+            identifier: data.identifier,
+            password: data.password,
+          })
+      
+          console.log("Sign in result: ", result)
+      
+          if (result?.error) {
+            toast.error("Invalid credentials or user not verified")
+          } else {
+            toast.success("Logged in successfully!")
+            router.replace('/dashboard') // Redirect to your dashboard or home
+          }
         } catch (error) {
-            toast('Something went wrong while loggin In.')
-        } finally{
-            setIsSubmitting(false)
+          toast.error('Something went wrong while logging in.')
+        } finally {
+          setIsSubmitting(false)
         }
-
-    }
+      }
+      
     
     return ( 
         <div className='flex justify-center items-center min-h-screen bg-gray-100'>

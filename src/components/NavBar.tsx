@@ -7,7 +7,7 @@ import { Button } from "@react-email/components"
 const NavBar = () => {
 
     const { data: session } = useSession()
-    console.log(session)
+    console.log("This is the user session", session)
 
   return (
     <nav className="p-4 md:p-6 shadow-md">
@@ -19,7 +19,7 @@ const NavBar = () => {
                 session ? (
                     <>
                         <span className="mr-4 ">Welcome, {session.user.username}</span>
-                        <Button className="w-full md:w-auto" onClick={() => signOut()} >Logout</Button>
+                        <Button className="w-full md:w-auto cursor-pointer" onClick={() => signOut()} >Logout</Button>
                     </>
                 ) : (
                     <Link href={'/sign-in'} className="cursor-pointer">

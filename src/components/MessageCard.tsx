@@ -3,8 +3,6 @@
 import {
 Card,
 CardContent,
-CardDescription,
-CardFooter,
 CardHeader,
 CardTitle,
 } from "@/components/ui/card"
@@ -48,8 +46,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   return (
     <Card>
     <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle className="mb-5 ">{message.content}</CardTitle>
         <AlertDialog>
         <AlertDialogTrigger asChild>
             <Button variant="outline"><X className="w-5 h-5" /></Button>
