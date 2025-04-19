@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
 
                 try {
                     const existingUser = await UserModel.findOne({
-                        email: credentials.email
+                        email: credentials.identifier
                     })
 
                     if (!existingUser) {
@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
 
             if (user) {
                 token._id = user._id?.toString()
-                token.isAcceptingMessage = user.isAcceptingMessage
+                token.isAcceptingMessage = user.isAcceptingMessages
                 token.isVerified = user.isVerified
                 token.username = user.username
                 token.email = user.email
@@ -71,7 +71,7 @@ export const authOptions: NextAuthOptions = {
             
             if (session?.user) {
                 session.user._id = token._id
-                session.user.isAcceptingMessage = token.isAcceptingMessage
+                session.user.isAcceptingMessages = !!token.isAcceptingMessage
                 session.user.isVerified = token.isVerified
                 session.user.username = token.username
                 session.user.email = token.email
@@ -81,9 +81,7 @@ export const authOptions: NextAuthOptions = {
         }
     },
     pages: {
-    //     // signIn: '/auth/signin',  
-        signIn: '/sign-in',
-    //     signOut: '/auth/signout', 
+        // signIn: '/sign-in',
     },
     secret: process.env.NEXTAUTH_SECRET
 }

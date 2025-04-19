@@ -22,7 +22,7 @@ const NavBar = () => {
                         <Button className="w-full md:w-auto" onClick={() => signOut()} >Logout</Button>
                     </>
                 ) : (
-                    <Link href={'/sign-in'}>
+                    <Link href={'/sign-in'} className="cursor-pointer">
                         Login 
                     </Link>
                 ) 

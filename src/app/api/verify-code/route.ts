@@ -26,8 +26,7 @@ export async function POST(request:Request) {
             })
         }
 
-        
-        const isCodeCorrect = parseInt(existingUser.verifyCode) === code
+        const isCodeCorrect = existingUser.verifyCode === code
         const isCodeValid = new Date(existingUser.verifyCodeExpiry) > new Date()
         console.log(existingUser, new Date())
 

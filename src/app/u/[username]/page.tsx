@@ -44,7 +44,7 @@ const SendingMessage = () => {
     } finally{
         setIsSendingMessage(false)
     }
-  }
+    }
   
 return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
@@ -66,6 +66,8 @@ return (
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e);
+                                            setIsSuccess(false)
+                                            setMessageStatus('')
                                             setMessage(e.target.value);
                                         }}
                                         className="border-gray-300 focus:ring-blue-500 focus:border-blue-500"
