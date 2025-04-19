@@ -2,8 +2,6 @@
 
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
-import { User } from 'next-auth'
-import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import { Button } from "@react-email/components"
 
 const NavBar = () => {
@@ -25,7 +23,7 @@ const NavBar = () => {
                     </>
                 ) : (
                     <Link href={'/sign-in'}>
-                        <Button className="w-full md:w-auto">Login</Button>
+                        Login 
                     </Link>
                 ) 
             }

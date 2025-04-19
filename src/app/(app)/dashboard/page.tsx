@@ -87,9 +87,13 @@ const Dashboard = () => {
     }
   }
 
-  const { username } = session?.user!!
-  const baseURL = `${window.location.protocol}//${window.location.host}`
-  const profileURL = `${baseURL}/u/${username}`
+  let profileURL = ''
+
+  if (session && session.user) {
+    const { username } = session?.user!!
+    const baseURL = `${window.location.protocol}//${window.location.host}`
+    profileURL = `${baseURL}/u/${username}`
+  }
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileURL)
