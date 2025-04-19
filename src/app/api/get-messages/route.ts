@@ -50,15 +50,13 @@ export async function GET(request:Request) {
             }
         ])
         
+        console.log(user)
 
 
         if (!user || user.length == 0) {
             return Response.json({
                 success: false,
-                message: "User not found in the database"
-            },
-            {
-                status: 404
+                message: "There are no message to display"
             })
         }
 

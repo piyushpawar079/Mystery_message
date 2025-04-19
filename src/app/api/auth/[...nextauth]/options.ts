@@ -87,7 +87,7 @@ export const authOptions: NextAuthOptions = {
         }
     },
     pages: {
-        // signIn: '/dashboard',
+        signIn: '/sign-in',
     },
     secret: process.env.NEXTAUTH_SECRET
 }

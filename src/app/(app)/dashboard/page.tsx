@@ -54,10 +54,10 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get('/api/get-messages')
-      setMessages(response.data.messages)
-      if(refresh){
-        toast("Showing latest messages")
-      }
+        setMessages(response.data.messages)
+        if(refresh){
+          toast("Showing latest messages")
+        }
     } catch (error) {
       toast('failed to load messages')
     } finally{
@@ -88,10 +88,10 @@ const Dashboard = () => {
   }
 
   let profileURL = ''
-  if (session && session.user) {
-    const { username } = session?.user!!
-    const baseURL = `${window.location.protocol}//${window.location.host}`
-    profileURL = `${baseURL}/u/${username}`
+  if (typeof window !== "undefined" && session && session.user) {
+    const { username } = session.user;
+    const baseURL = `${window.location.protocol}//${window.location.host}`;
+    profileURL = `${baseURL}/u/${username}`;
   }
 
   const copyToClipboard = () => {
@@ -153,7 +153,7 @@ const Dashboard = () => {
       </Button>
 
       <div className='mt-4 grid grid-cols-1 md:grid-cols-2 gap-6'>
-        { messages.length > 0 ? (
+        { messages?.length > 0 ? (
             messages.map((message, index) => (
               <MessageCard 
                 message={message}

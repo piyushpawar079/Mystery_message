@@ -7,7 +7,6 @@ import { Button } from "@react-email/components"
 const NavBar = () => {
 
     const { data: session } = useSession()
-    console.log("This is the user session", session)
 
   return (
     <nav className="p-4 md:p-6 shadow-md">

@@ -24,9 +24,6 @@ export async function POST(request: Request){
             return Response.json({
                 success: false,
                 message: "User is not accepting messages currently"
-            },
-            {
-                status: 403
             })
         }
 
