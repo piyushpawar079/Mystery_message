@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Live link of the website**
 
-## Getting Started
+### https://mystery-message-one-brown.vercel.app/
 
-First, run the development server:
+# 🕵️ Mystery Message
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A fun and anonymous feedback platform built with **Next.js**, **MongoDB**, and **NextAuth** where users can sign up, verify their email, and send or receive messages—completely anonymously.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🔐 **Email Authentication with Verification**
+  - Users sign up using their email.
+  - A **verification code** is sent using [Resend](https://resend.com/).
+  - Verification code is valid for **2 hours**.
+  - Users must verify their email to access the main dashboard.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🧑‍💻 **Secure Dashboard**
+  - Authenticated and verified users are redirected to a personal dashboard.
+  - View all anonymous messages received from other users.
 
-## Learn More
+- 📩 **Anonymous Messaging System**
+  - Users can view all other users on the **Users** page.
+  - Send completely anonymous messages to any user.
+  - Sender identity is never revealed, encouraging honest and unfiltered feedback.
 
-To learn more about Next.js, take a look at the following resources:
+- 📬 **Email Delivery via Resend**
+  - All emails, including verification emails, are sent using [Resend](https://resend.com/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 💾 **Tech Stack**
+  - **Next.js (App Router)**
+  - **MongoDB & Mongoose**
+  - **NextAuth** for authentication
+  - **ShadCN** for styling
+  - **Resend** for email handling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## **⚡ Setup Instructions**  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+0. Create a .env file using the .env.sample file
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the Repository  
+    ```sh
+    git clone https://github.com/piyushpawar079/Mystery_message.git
+    cd Mystery_message
+    ```
+
+2. Start the frontend
+    ```sh
+    npm install  
+    npm run dev 
+    ```
+
+3. Open in Browser
+- Visit http://localhost:3000 to explore the website.
+
+## ScreenShots
+
+- 1. Home Page
+
+![Home Page](screenshots/Home_Page.png)
+
+- 2. Dashboard Page
+
+![Dashboard Page](screenshots/Dashboard_Page.png)
+
+- 3. Users Page
+
+![Users Page](screenshots/Users_Page.png)
+
+- 4. Send Message Page
+
+![Send Message Page](screenshots/Send_Message_Page.png)
