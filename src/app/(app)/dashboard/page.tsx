@@ -108,7 +108,7 @@ const Dashboard = () => {
       <h1 className='mb-4 text-4xl font-bold'>User Dashboard</h1>
       <div className='mb-4'>
         <h2 className='mb-2 text-lg font-semibold'>
-          Copy your unique link{' '}
+          Copy your unique link{' '}You can share this link with anyone to accept anonymous feedback.
         </h2>
         <div className='flex items-center'>
           <input 
