@@ -115,7 +115,7 @@ const Dashboard = () => {
             type="text" 
             value={profileURL}
             disabled
-            className='input mr-2 p-2 input-bordered w-full'
+            className='input mr-2 p-2 input-bordered w-full border border-black rounded-lg'
           />
           <Button onClick={copyToClipboard}>COPY</Button>
         </div>
