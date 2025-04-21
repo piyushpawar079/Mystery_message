@@ -50,7 +50,6 @@ export async function GET(request:Request) {
             }
         ])
         
-        console.log(user)
 
 
         if (!user || user.length == 0) {

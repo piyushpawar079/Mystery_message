@@ -9,15 +9,15 @@ export async function POST(request: Request){
         
         const { username, content } = await request.json()
 
-        const user = await UserModel.findOne({ username })
+        const decodedUsername = decodeURIComponent(username)
+
+        const user = await UserModel.findOne({ username: decodedUsername })
+
 
         if (!user) {
             return Response.json({
                 success: false,
                 message: "User not found in the database"
-            },
-            {
-                status: 404
             })
         }
         else if (!user.isAcceptingMessages){
@@ -45,9 +45,6 @@ export async function POST(request: Request){
         return Response.json({
             success: false,
             message: "Error while sending message"
-        },
-        {
-            status: 500
         })
     }
 

@@ -20,7 +20,6 @@ export async function sendVarificationEmail(
             message: 'Varification email send succesfully'
         }
     } catch (emailError) {
-        console.log('Something went wronge while sending varification email', emailError)
         return {
             success: false,
             message: 'Error sending varification email'

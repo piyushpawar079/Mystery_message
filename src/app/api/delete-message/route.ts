@@ -14,10 +14,8 @@ export async function DELETE(request: Request){
             messageId: searchParams.get('messageId')
         }
 
-        console.log(searchParams, queryParam)
 
         const sessions = await getServerSession(authOptions)
-        console.log(sessions)
         if (!sessions || !sessions.user) {
             return Response.json({
                 success: false,
@@ -36,11 +34,9 @@ export async function DELETE(request: Request){
             })
         }
 
-        console.log("This is the messages of a certain user", user.message)
 
         const filtered_messages = user.message.filter((message) => message._id.toString() !== queryParam.messageId )
 
-        console.log("This are the filtered messages", filtered_messages)
 
         user.message = filtered_messages
         await user.save()
