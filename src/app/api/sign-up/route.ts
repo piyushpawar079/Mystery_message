@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User.models";
 import bcrypt from "bcryptjs";
-import { sendVarificationEmail } from "@/helper/sendVarificationMail";
+import { emailJSVerificationMail } from "@/helper/emailjsVarificationMail";
 
 
 export async function POST(request: Request){
@@ -11,7 +11,6 @@ export async function POST(request: Request){
     try {
 
         const {username, email, password} = await request.json()
-
 
         const existingVerifiedUser = await UserModel.findOne({
             username,
@@ -67,21 +66,19 @@ export async function POST(request: Request){
             await newUser.save()
         }
 
-        const emailResponse = await sendVarificationEmail(email, username, verifyCode)
-
-        if (!emailResponse.success) {
-            return Response.json({
-                success: false,
-                message: emailResponse.message
-            }, 
-            {
-                status: 500    
-            })
-        }
+        // const emailResponse = await emailJSVerificationMail(email, verifyCode)
+        // console.log(emailResponse)
+        // if (!emailResponse.success) {
+        //     return Response.json({
+        //         success: false,
+        //         message: emailResponse.message
+        //     })
+        // }
 
         return Response.json({
             success: true,
-            message: 'User registered successfully. Please verify user email'
+            message: 'User registered successfully. Please verify user email',
+            verificationCode: verifyCode
         },
         {
             status: 201
@@ -91,9 +88,6 @@ export async function POST(request: Request){
         return Response.json({
             success: false,
             message: 'Error registering user'
-        },
-        {
-            status: 500
         })
     }
 

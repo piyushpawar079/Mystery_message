@@ -1,9 +1,9 @@
 "use client"
+import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { verifyCodeSchema } from '@/schemas/verifyCodeSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@react-email/components'
 import axios, { AxiosError } from 'axios'
 import { ApiError } from 'next/dist/server/api-utils'
 import { useParams, useRouter } from 'next/navigation'
@@ -29,7 +29,6 @@ const VerifyCode = () => {
                 code: data.code
             })
 
-            console.log(response)
             toast(response.data.message)
 
             router.replace('/sign-in')
@@ -69,7 +68,7 @@ const VerifyCode = () => {
                         </FormItem>
                     )}
                     />
-                    <Button type="submit" className='cursor-pointer'>Submit</Button>
+                    <Button>Submit</Button>
                 </form>
             </Form>
         </div>

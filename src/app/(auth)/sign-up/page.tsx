@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
+import { emailJSVerificationMail } from '@/helper/emailjsVarificationMail'
 
 export default function Component() {
 
@@ -73,10 +74,23 @@ export default function Component() {
         setUsernameMessage('')
         try {
             const response = await axios.post('/api/sign-up', data)
+            // toast(response.data.message)
+            // setIsSuccess(response.data.success)
+            // router.replace(`/verify-code/${username}`)
+            // setIsSubmitting(false)
+
+
+            const emailResult = await emailJSVerificationMail(data.email, response.data.verificationCode)
+
+
+            if (!emailResult.success) {
+            toast('Error sending verification email')
+            return
+            }
+
             toast(response.data.message)
-            setIsSuccess(response.data.success)
-            router.replace(`/verify-code/${username}`)
-            setIsSubmitting(false)
+            setIsSuccess(true)
+            router.replace(`/verify-code/${data.username}`)
 
         } catch (error) {
             console.log(error)
