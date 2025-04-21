@@ -52,7 +52,8 @@ const SendingMessage = () => {
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">Send Anonymous Message</h1>
         <p className="text-sm text-gray-600 mb-6 text-center">
-          Send an anonymous message to <span className="font-semibold">@{params.username}</span>
+          Send an anonymous message to <span className="font-semibold">@{decodeURIComponent(params.username as string)
+          }</span>
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
