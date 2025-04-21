@@ -36,7 +36,6 @@ export default function Component() {
             password: data.password,
           })
       
-          console.log("Sign in result: ", result)
       
           if (result?.error) {
             toast.error("Invalid credentials or user not verified")
